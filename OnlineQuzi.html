@@ -1,0 +1,229 @@
+    <html>
+        <head>
+                <meta charset="UTF-8">
+                <meta http-equiv="X-UA-Compatible" content="IE=edge">
+                <meta name="viewport" content="width=device-width, initial-scale=1.0">
+                <title>Online Android Test</title>
+        </head>
+    
+    <body onload="display(index)">
+        <h1>Online <span style="color: rgb(26, 111, 221);">Android</span> Test</h1>
+    
+        <h3 id="question">What is DVM?</h3>
+        <table>
+            <tr>
+                <td>A.<input type="radio" name="answer" id="a"><span id="option1">Device Virtual Machine</span></td>
+            </tr>
+            <tr>
+                <td>B.<input type="radio" name="answer" id="b"><span id="option2">Dalvic Virtual Machine</span></td>
+            </tr>
+            <tr>
+                <td>C.<input type="radio" name="answer" id="c"><span id="option3">DOM Virtual Machine</span></td>
+            </tr>
+            <tr>
+                <td>D.<input type="radio" name="answer" id="d"><span id="option4">None of these</span></td>
+            </tr>
+        </table>
+    
+        <button onclick="prevQuestion()" id="prevbtn">Previous</button>
+    
+        <button onclick="nextQuestion()" id="nextbtn">Next</button>
+    
+        <button onclick="finishExam()" id="finishbtn">Finish</button>
+    
+            <script>
+    
+                var set1 = [
+                    {
+                        "Q": "Number of primitive data types in Java are?",
+                        "O1": "6",
+                        "O2": "7",
+                        "O3": "8",
+                        "O4": "9",
+                        "answer": "c"
+                    },
+                    {
+                        "Q":"What is the size of float and double in java?",
+                        "O1": "32 and 64",
+                        "O2": "32 and 32",
+                        "O3": "64 and 64",
+                        "O4": "64 and 32",
+                        "answer": "a"
+                    },
+                    {
+                        "Q":"Automatic type conversion is possible in which of the possible cases?",
+                        "O1": "Byte to int",
+                        "O2": "Int to long",
+                        "O3": "Long to int",
+                        "O4": "Short to int",
+                        "answer": "b"
+                    },
+                    {
+                        "Q":"Select the valid statement.",
+                        "O1": "char[] ch = new char(5)",
+                        "O2": "char[] ch = new char[5]",
+                        "O3": "char[] ch = new char()",
+                        "O4": "char[] ch = new char[]",
+                        "answer": "b"
+                    },
+                    {
+                        "Q":"When an array is passed to a method, what does the method receive?",
+                        "O1": "The reference of the array",
+                        "O2": "A copy of the array",
+                        "O3": "Length of the array",
+                        "O4": "Copy of first element",
+                        "answer": "a"
+                    },
+                    {
+                        "Q":"Select the valid statement to declare and initialize an array.",
+                        "O1": "int[] A = {}",
+                        "O2": "int[] A = {1, 2, 3}",
+                        "O3": "int[] A = (1, 2, 3)",
+                        "O4": "int[][] A = {1, 2, 3}",
+                        "answer": "b"
+                    },
+                    {
+                        "Q":"Arrays in java are-",
+                        "O1": "Object references",
+                        "O2": "Object",
+                        "O3": "Primitive data type",
+                        "O4": "None",
+                        "answer": "b"
+                    },
+                    {
+                        "Q":"When is the object created with new keyword?",
+                        "O1": "Depends on the code",
+                        "O2": "At compile time",
+                        "O3": "At run time",
+                        "O4": "None",
+                        "answer": "c"
+                    },
+                    {
+                        "Q":"Identify the corrected definition of a package.",
+                        "O1": "A package is a collection of editing tools",
+                        "O2": "A package is a collection of classes",
+                        "O3": "A package is a collection of interface",
+                        "O4": "A package is a collection of classes and interface",
+                        "answer": "d"
+                    },
+                    {
+                        "Q":"To which of the following does the class string belong to.",
+                        "O1": "java.lang",
+                        "O2": "java.awt",
+                        "O3": "java.applet",
+                        "O4": "java.string",
+                        "answer": "a"
+                    }
+                ];
+    
+                var set1Answer = ["", "", ""];
+    
+                var index = 0;
+    
+                function display(index)
+                {
+    
+                    if(index == 0)
+                    {
+                        document.getElementById('prevbtn').style.display = 'none';
+                    }
+                    else{
+                        document.getElementById('prevbtn').style.display = 'block';
+                    }
+    
+                    if(set1.length-1 == index)
+                    {
+                        document.getElementById('nextbtn').style.display = 'none';
+                    }
+                    else{
+                        document.getElementById('nextbtn').style.display = 'block';
+                    }
+                    
+                    document.getElementById('a').checked = false;
+                    document.getElementById('b').checked = false;
+                    document.getElementById('c').checked = false;
+                    document.getElementById('d').checked = false;
+    
+                    if(set1Answer[index] == "a")
+                    {
+                        document.getElementById('a').checked = true;
+                    }
+                    else if(set1Answer[index] == "b")
+                    {
+                       document.getElementById('b').checked = true;
+                    }
+                    else if(set1Answer[index] == "c")
+                    {
+                        document.getElementById('c').checked = true;
+                    }
+                    else if(set1Answer[index] == "d")
+                    {
+                        document.getElementById('d').checked = true;
+                    }
+    
+    
+                    document.getElementById('question').innerHTML = set1[index].Q;
+                    document.getElementById('option1').innerHTML = set1[index].O1;
+                    document.getElementById('option2').innerHTML = set1[index].O2;
+                    document.getElementById('option3').innerHTML = set1[index].O3;
+                    document.getElementById('option4').innerHTML = set1[index].O4;
+                }
+    
+                function nextQuestion()
+                {
+                    checkAnswer();
+                    index++;
+                    display(index);
+                }
+    
+                function prevQuestion()
+                {
+                    checkAnswer();
+                    index--;
+                    display(index);
+                }
+    
+                function checkAnswer()
+                {
+                    var useranswer = "";
+                    if(document.getElementById('a').checked == true)
+                    {
+                        useranswer = "a";
+                    }
+                    else if(document.getElementById('b').checked == true)
+                    {
+                        useranswer = "b";
+                    }
+                    else if(document.getElementById('c').checked == true)
+                    {
+                        useranswer = "c";
+                    }
+                    else if(document.getElementById('d').checked == true)
+                    {
+                        useranswer = "d";
+                    }
+    
+                    //alert(useranswer);
+                    set1Answer[index] = useranswer;
+                }
+    
+                function finishExam()
+                {
+                    checkAnswer();
+    
+                    var marks = 0;
+    
+                    for(i=0; i<set1.length; i++)
+                    {
+                        if(set1[i].answer == set1Answer[i])
+                        {
+                            marks++;
+                        }
+                    }
+                    document.write("You got total "+marks+" marks.")
+                }
+            </script>
+        </body>
+     
+    </body>
+    </html>
